@@ -12,13 +12,14 @@ const CACHE_NAME = 'dashboard-v1';
 
 // These are all the files your app needs to work
 // The service worker will download and save all of these
+
 const FILES_TO_CACHE = [
-  './',
-  './index.html',
-  './style.css',
-  './script.js',
-  './manifest.json',
-  './icon.png'
+  '/My-dashboard/',
+  '/My-dashboard/index.html',
+  '/My-dashboard/style.css',
+  '/My-dashboard/script.js',
+  '/My-dashboard/manifest.json',
+  '/My-dashboard/icon.png'
 ];
 
 
