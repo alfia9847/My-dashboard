@@ -2,7 +2,7 @@
   "name": "My Life Dashboard",
   "short_name": "Dashboard",
   "description": "A personal app to manage reminders and track expenses",
-  "start_url": "./index.html",
+  "start_url": "/My-dashboard/",
   "display": "standalone",
   "background_color": "#0f1117",
   "theme_color": "#7c6af7",
@@ -10,13 +10,9 @@
   "icons": [
     {
       "src": "icon.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "icon.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
