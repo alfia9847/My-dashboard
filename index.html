@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Life Dashboard</title>
+
+  <!-- Links to your CSS file -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- PWA manifest — makes it installable as a desktop app -->
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">My<span>Dashboard</span></div>
+    <div id="clock">--:-- --</div>
+  </header>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('dashboard', this)">🏠 Overview</button>
+    <button class="tab-btn" onclick="switchTab('reminders', this)">🔔 Reminders</button>
+    <button class="tab-btn" onclick="switchTab('expenses', this)">💸 Expenses</button>
+  </div>
+
+  <!-- OVERVIEW PANEL -->
+  <div id="panel-dashboard" class="panel active">
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-label">Active Reminders</div>
+        <div class="stat-value" id="stat-reminders">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Total Spent</div>
+        <div class="stat-value" id="stat-spent">₹0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">This Month</div>
+        <div class="stat-value" id="stat-month">₹0</div>
+      </div>
+    </div>
+    <div class="dash-grid">
+      <div class="card">
+        <div class="card-title">⏰ Upcoming Reminders</div>
+        <div id="dash-upcoming"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">💸 Recent Expenses</div>
+        <div id="dash-recent"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REMINDERS PANEL -->
+  <div id="panel-reminders" class="panel">
+    <div class="card">
+      <div class="card-title">➕ Add a Reminder</div>
+      <div class="form-row">
+        <input type="text" id="r-title" placeholder="What do you need to remember?" />
+      </div>
+      <div class="form-row">
+        <textarea id="r-note" placeholder="Extra notes (optional)..." rows="2"></textarea>
+      </div>
+      <div class="form-row">
+        <input type="datetime-local" id="r-time" />
+        <select id="r-category">
+          <option value="study">📚 Study</option>
+          <option value="personal">🌱 Personal</option>
+          <option value="finance">💰 Finance</option>
+          <option value="other">📌 Other</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" onclick="addReminder()">Save Reminder</button>
+    </div>
+    <div class="card">
+      <div class="card-title">🗂 Your Reminders</div>
+      <div id="reminder-list"></div>
+    </div>
+  </div>
+
+  <!-- EXPENSES PANEL -->
+  <div id="panel-expenses" class="panel">
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-label">Total Spent</div>
+        <div class="stat-value" id="exp-total">₹0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">This Month</div>
+        <div class="stat-value" id="exp-month">₹0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Entries</div>
+        <div class="stat-value" id="exp-count">0</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">➕ Log an Expense</div>
+      <div class="form-row">
+        <input type="text" id="e-name" placeholder="What did you spend on?" />
+        <input type="number" id="e-amount" placeholder="Amount (₹)" min="0" />
+      </div>
+      <div class="form-row">
+        <select id="e-category">
+          <option value="🍔">🍔 Food</option>
+          <option value="📚">📚 Education</option>
+          <option value="🚌">🚌 Transport</option>
+          <option value="🛍️">🛍️ Shopping</option>
+          <option value="🏥">🏥 Health</option>
+          <option value="🎮">🎮 Entertainment</option>
+          <option value="💡">💡 Bills</option>
+          <option value="📦">📦 Other</option>
+        </select>
+        <input type="date" id="e-date" />
+      </div>
+      <button class="btn btn-primary" onclick="addExpense()">Log Expense</button>
+    </div>
+    <div class="card">
+      <div class="card-title">📋 Expense History</div>
+      <div id="expense-list"></div>
+    </div>
+  </div>
+
+  <!-- NOTIFICATION POPUP -->
+  <div id="notif-popup">
+    <button id="notif-close" onclick="closeNotif()">✕</button>
+    <div class="notif-title">🔔 Reminder!</div>
+    <div class="notif-body" id="notif-body"></div>
+  </div>
+
+  <!-- Links to your JavaScript file — always at the bottom of body -->
+   <script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./sw.js')
+        .then(() => console.log('Service Worker registered!'))
+        .catch(err => console.log('SW error:', err));
+    }
+   </script>
+   <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,437 @@
+/* ── RESET ──
+   Removes default browser spacing from every element */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── CSS VARIABLES ──
+   Like a colour palette — change one value here and it updates everywhere */
+:root {
+  --bg:           #0f1117;   /* main background — very dark navy */
+  --surface:      #1a1d27;   /* card background */
+  --surface2:     #222636;   /* input background */
+  --border:       #2e3248;   /* border lines */
+  --accent:       #7c6af7;   /* purple — main highlight colour */
+  --accent2:      #4ecdc4;   /* teal — secondary highlight */
+  --warn:         #f7c948;   /* yellow — warning colour */
+  --danger:       #f76a6a;   /* red — delete / urgent */
+  --success:      #56cfb2;   /* green — success */
+  --text:         #e8eaf6;   /* main text colour */
+  --muted:        #7b80a0;   /* grey — less important text */
+  --font-display: 'Space Grotesk', sans-serif;  /* headings font */
+  --font-body:    'Inter', sans-serif;           /* normal text font */
+  --radius:       14px;   /* rounded corners — big */
+  --radius-sm:    8px;    /* rounded corners — small */
+}
+
+/* ── BODY ──
+   Sets the dark background and default font for the whole page */
+body {
+  background:  var(--bg);
+  color:       var(--text);
+  font-family: var(--font-body);
+  min-height:  100vh;
+  padding:     24px 16px 60px;
+}
+
+/* ────────────────────────────
+   HEADER
+──────────────────────────── */
+header {
+  max-width:      860px;
+  margin:         0 auto 32px;
+  display:        flex;
+  align-items:    center;
+  justify-content: space-between;
+  flex-wrap:      wrap;
+  gap:            12px;
+}
+
+.logo {
+  font-family:    var(--font-display);
+  font-size:      1.5rem;
+  font-weight:    700;
+  letter-spacing: -0.5px;
+}
+
+/* The coloured part of the logo — "Dashboard" */
+.logo span {
+  color: var(--accent);
+}
+
+#clock {
+  font-family:   var(--font-display);
+  font-size:     0.95rem;
+  color:         var(--muted);
+  background:    var(--surface);
+  padding:       6px 14px;
+  border-radius: 40px;
+  border:        1px solid var(--border);
+}
+
+/* ────────────────────────────
+   TABS
+──────────────────────────── */
+.tabs {
+  max-width:     860px;
+  margin:        0 auto 24px;
+  display:       flex;
+  gap:           8px;
+  background:    var(--surface);
+  padding:       6px;
+  border-radius: var(--radius);
+  border:        1px solid var(--border);
+}
+
+.tab-btn {
+  flex:          1;
+  padding:       10px;
+  border:        none;
+  border-radius: var(--radius-sm);
+  background:    transparent;
+  color:         var(--muted);
+  font-family:   var(--font-display);
+  font-size:     0.9rem;
+  font-weight:   600;
+  cursor:        pointer;
+  transition:    all 0.2s;
+}
+
+/* Active tab gets the purple background */
+.tab-btn.active {
+  background: var(--accent);
+  color:      #fff;
+}
+
+/* ────────────────────────────
+   PANELS
+   Only the active panel is shown — others are hidden
+──────────────────────────── */
+.panel {
+  display:   none;
+  max-width: 860px;
+  margin:    0 auto;
+}
+
+.panel.active {
+  display: block;
+}
+
+/* ────────────────────────────
+   CARDS
+──────────────────────────── */
+.card {
+  background:    var(--surface);
+  border:        1px solid var(--border);
+  border-radius: var(--radius);
+  padding:       24px;
+  margin-bottom: 20px;
+}
+
+.card-title {
+  font-family:  var(--font-display);
+  font-size:    1rem;
+  font-weight:  700;
+  margin-bottom: 18px;
+  color:        var(--text);
+  display:      flex;
+  align-items:  center;
+  gap:          8px;
+}
+
+/* ────────────────────────────
+   FORM ELEMENTS
+──────────────────────────── */
+.form-row {
+  display:       flex;
+  gap:           10px;
+  flex-wrap:     wrap;
+  margin-bottom: 10px;
+}
+
+input,
+select,
+textarea {
+  background:    var(--surface2);
+  border:        1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color:         var(--text);
+  font-family:   var(--font-body);
+  font-size:     0.9rem;
+  padding:       10px 14px;
+  outline:       none;
+  transition:    border 0.2s;
+  width:         100%;
+}
+
+/* Highlight border when you click into a field */
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--accent);
+}
+
+/* Makes the date/time picker dark themed */
+input[type="datetime-local"] {
+  color-scheme: dark;
+}
+
+select option {
+  background: var(--surface2);
+}
+
+textarea {
+  resize:     vertical;
+  min-height: 70px;
+}
+
+/* Inside a form-row, inputs sit side by side */
+.form-row input,
+.form-row select {
+  flex:      1;
+  min-width: 160px;
+}
+
+/* ────────────────────────────
+   BUTTONS
+──────────────────────────── */
+.btn {
+  padding:       10px 20px;
+  border:        none;
+  border-radius: var(--radius-sm);
+  font-family:   var(--font-display);
+  font-size:     0.9rem;
+  font-weight:   600;
+  cursor:        pointer;
+  transition:    opacity 0.2s, transform 0.1s;
+}
+
+/* Slight shrink when you click */
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-danger  { background: var(--danger); color: #fff; }
+.btn-sm      { padding: 5px 12px; font-size: 0.78rem; }
+
+/* ────────────────────────────
+   REMINDER ITEMS
+──────────────────────────── */
+.reminder-item {
+  display:         flex;
+  align-items:     flex-start;
+  justify-content: space-between;
+  gap:             12px;
+  padding:         14px 16px;
+  background:      var(--surface2);
+  border:          1px solid var(--border);
+  border-radius:   var(--radius-sm);
+  margin-bottom:   10px;
+}
+
+/* Coloured left border based on urgency */
+.reminder-item.urgent { border-left: 3px solid var(--danger); }
+.reminder-item.soon   { border-left: 3px solid var(--warn);   }
+.reminder-item.done   { opacity: 0.45; }
+
+.reminder-text {
+  font-weight:   500;
+  font-size:     0.92rem;
+  margin-bottom: 4px;
+}
+
+.reminder-meta {
+  font-size: 0.78rem;
+  color:     var(--muted);
+}
+
+/* Category badge */
+.reminder-tag {
+  font-size:     0.72rem;
+  padding:       2px 8px;
+  border-radius: 20px;
+  font-weight:   600;
+  margin-left:   6px;
+}
+
+.tag-study    { background: #2d2060; color: var(--accent);  }
+.tag-personal { background: #1d3a3a; color: var(--accent2); }
+.tag-finance  { background: #3a2a10; color: var(--warn);    }
+.tag-other    { background: #2a2a2a; color: var(--muted);   }
+
+.reminder-actions {
+  display:    flex;
+  gap:        6px;
+  flex-shrink: 0;
+}
+
+/* ────────────────────────────
+   EXPENSE ITEMS
+──────────────────────────── */
+.expense-item {
+  display:         flex;
+  align-items:     center;
+  justify-content: space-between;
+  gap:             12px;
+  padding:         12px 16px;
+  background:      var(--surface2);
+  border:          1px solid var(--border);
+  border-radius:   var(--radius-sm);
+  margin-bottom:   10px;
+}
+
+.expense-left {
+  display:     flex;
+  align-items: center;
+  gap:         12px;
+}
+
+.expense-icon {
+  width:         36px;
+  height:        36px;
+  border-radius: 50%;
+  display:       flex;
+  align-items:   center;
+  justify-content: center;
+  font-size:     1.1rem;
+  flex-shrink:   0;
+}
+
+.expense-name { font-weight: 500; font-size: 0.92rem; }
+.expense-date { font-size: 0.76rem; color: var(--muted); }
+
+.expense-amount {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size:   1rem;
+}
+
+.expense-amount.neg { color: var(--danger); }
+
+/* ────────────────────────────
+   STATS ROW (the number cards at top)
+──────────────────────────── */
+.stats-row {
+  display:               grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap:                   14px;
+  margin-bottom:         20px;
+}
+
+.stat-card {
+  background:    var(--surface);
+  border:        1px solid var(--border);
+  border-radius: var(--radius);
+  padding:       18px 20px;
+}
+
+.stat-label {
+  font-size:      0.78rem;
+  color:          var(--muted);
+  margin-bottom:  6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-value {
+  font-family: var(--font-display);
+  font-size:   1.5rem;
+  font-weight: 700;
+}
+
+/* ────────────────────────────
+   EMPTY STATE
+   Shown when there's no data yet
+──────────────────────────── */
+.empty {
+  text-align: center;
+  padding:    36px 20px;
+  color:      var(--muted);
+  font-size:  0.9rem;
+}
+
+.empty-icon {
+  font-size:     2.5rem;
+  margin-bottom: 10px;
+}
+
+/* ────────────────────────────
+   NOTIFICATION POPUP
+──────────────────────────── */
+#notif-popup {
+  position:   fixed;
+  top:        20px;
+  right:      20px;
+  background: var(--surface);
+  border:     1px solid var(--accent);
+  border-radius: var(--radius);
+  padding:    16px 20px;
+  max-width:  320px;
+  box-shadow: 0 8px 32px rgba(124, 106, 247, 0.25);
+  z-index:    9999;
+  display:    none;
+  animation:  slideIn 0.3s ease;
+}
+
+/* Slides in from the right */
+@keyframes slideIn {
+  from { transform: translateX(120%); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+#notif-popup .notif-title {
+  font-family:   var(--font-display);
+  font-weight:   700;
+  margin-bottom: 4px;
+  color:         var(--accent);
+}
+
+#notif-popup .notif-body {
+  font-size: 0.88rem;
+  color:     var(--text);
+}
+
+#notif-close {
+  position:   absolute;
+  top:        10px;
+  right:      12px;
+  background: none;
+  border:     none;
+  color:      var(--muted);
+  cursor:     pointer;
+  font-size:  1rem;
+}
+
+/* ────────────────────────────
+   DASHBOARD GRID
+──────────────────────────── */
+.dash-grid {
+  display:               grid;
+  grid-template-columns: 1fr 1fr;
+  gap:                   16px;
+}
+
+/* On small screens, stack the two columns */
+@media (max-width: 600px) {
+  .dash-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.upcoming-item {
+  padding:       10px 14px;
+  background:    var(--surface2);
+  border-radius: var(--radius-sm);
+  border-left:   3px solid var(--accent);
+  margin-bottom: 8px;
+  font-size:     0.88rem;
+}
+
+.upcoming-item .u-time {
+  font-size:  0.75rem;
+  color:      var(--muted);
+  margin-top: 3px;
+}
